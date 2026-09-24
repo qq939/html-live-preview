@@ -1,0 +1,42 @@
+# Logs
+logs/
+*.log
+
+# Sessions
+sessions/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Workspace platform metadata (not part of the app)
+AGENTS.md
+BOOTSTRAP.md
+CLAUDE.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+systemreadme.md
+hermit-container-debugging-guide.md
+start.sh
+run_claude.js
+test_sync.txt
+memory/
+
+# Misc
+tmp/
+.env
+.env.local
