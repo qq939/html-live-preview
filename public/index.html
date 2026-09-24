@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>HTML 实时预览 · Live Preview</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="/public/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">HTML 实时预览</div>
+    <div class="right">
+      <button id="renderNow" type="button" class="topbar-btn" title="立即渲染一次">立即渲染</button>
+      <div class="interval-control" id="intervalControl" title="滚轮调节渲染间隔 (1-1000s)">
+        <span class="ic-label">渲染间隔</span>
+        <span class="ic-value" id="intervalValue">10</span>
+        <span class="ic-unit">秒</span>
+      </div>
+      <button id="resetLayout" type="button" class="topbar-btn" title="重置布局比例">重置布局</button>
+    </div>
+  </header>
+
+  <main class="layout" id="layout">
+    <!-- LEFT COLUMN -->
+    <section class="col left-col" id="leftCol">
+      <!-- TOP-LEFT: editor -->
+      <div class="cell editor-cell">
+        <div class="cell-header">
+          <span>编辑器</span>
+          <span class="hint">支持代码段按钮和缩写 + 回车展开</span>
+        </div>
+        <div class="snippets" id="snippets"></div>
+        <textarea id="editor" spellcheck="false" placeholder="在这里写 HTML…"></textarea>
+      </div>
+
+      <!-- horizontal splitter (left column) -->
+      <div class="splitter splitter-h" id="splitterHLeft" data-target="left"></div>
+
+      <!-- BOTTOM-LEFT: file manager (collapsible) -->
+      <div class="cell fm-cell" id="fileManager">
+        <div class="cell-header fm-header">
+          <button id="fmToggle" type="button" class="fm-toggle" aria-expanded="true">
+            <span class="fm-arrow open" id="fmArrow">▶</span>
+            <span>文件管理器</span>
+          </button>
+          <button id="saveBtn" type="button" class="fm-save" title="保存当前编辑器内容到文件管理器">保存</button>
+        </div>
+        <div class="fm-body" id="fmBody">
+          <div class="fm-list" id="fmList"></div>
+          <div class="fm-empty" id="fmEmpty">暂无保存的文件。点击「保存」将当前编辑器内容存为文件。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- vertical splitter -->
+    <div class="splitter splitter-v" id="splitterV"></div>
+
+    <!-- RIGHT COLUMN -->
+    <section class="col right-col" id="rightCol">
+      <!-- TOP-RIGHT: console -->
+      <div class="cell console-cell">
+        <div class="cell-header">
+          <span>Console</span>
+          <button id="clearConsole" type="button" class="mini-btn">清空</button>
+        </div>
+        <div class="console" id="console"></div>
+      </div>
+
+      <!-- horizontal splitter (right column) -->
+      <div class="splitter splitter-h" id="splitterHRight" data-target="right"></div>
+
+      <!-- BOTTOM-RIGHT: preview (collapsible) -->
+      <div class="cell preview-cell" id="previewCell">
+        <div class="cell-header preview-header">
+          <button id="previewToggle" type="button" class="fm-toggle" aria-expanded="true">
+            <span class="fm-arrow open" id="previewArrow">▶</span>
+            <span>预览</span>
+          </button>
+          <span class="hint">下方是 iframe 渲染结果</span>
+        </div>
+        <div class="preview-body" id="previewBody">
+          <iframe id="preview" sandbox="allow-scripts allow-modals allow-forms"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/public/app.js"></script>
+</body>
+</html>
